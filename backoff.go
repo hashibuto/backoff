@@ -46,7 +46,7 @@ func Backoff(config Config, timeout time.Duration, callback func() (bool, error)
 
 		time.Sleep(current)
 
-		current *= time.Duration(config.Step)
+		current = time.Duration(float64(current) * config.Step)
 		if current > config.Max {
 			current = config.Max
 		}
